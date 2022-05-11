@@ -10,10 +10,16 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3.1.1
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
       - name: Install deps
-        run: npm i --no-audit --no-fund --no-optional
+        run: npm ci
       - name: Lint
         run: npm run eslint
+      - name: Cypress.io E2E tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          start: npm run start:test
+          wait-on: http://localhost:5000
