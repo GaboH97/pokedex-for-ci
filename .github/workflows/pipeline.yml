@@ -14,6 +14,6 @@ jobs:
         with:
           node-version: 14
       - name: Install deps
-        run: npm i
+        run: npm i --no-audit --no-fund --no-optional
       - name: Lint
         run: npm run eslint
